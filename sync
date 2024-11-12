@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -e
+
+make stop
+make build-push comp=server
+make start
+
+until curl localhost:8080/health; do 
+  sleep 5
+done
+
+echo "Success"
