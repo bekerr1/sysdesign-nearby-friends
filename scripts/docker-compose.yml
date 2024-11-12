@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: user
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+  server:
+    image: localhost:5000/server
+    container_name: server
+    restart: on-failure
+    ports:
+      - "8080:8080"
